@@ -34,7 +34,11 @@ namespace Syrinj
 
         private MonoBehaviour[] GetAllBehavioursInScene()
         {
+#if UNITY_5 
             return GameObject.FindObjectsOfType<MonoBehaviour>();
+#else
+            return GameObject.FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None);
+#endif
         }
 
         private void InjectBehaviours(MonoBehaviour[] behaviours)
